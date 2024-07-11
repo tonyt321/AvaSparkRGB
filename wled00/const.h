@@ -9,10 +9,10 @@
 
 //Defaults
 #define DEFAULT_CLIENT_SSID "Your_Network"
-#define DEFAULT_AP_SSID     "WLED-AP"
-#define DEFAULT_AP_PASS     "wled1234"
-#define DEFAULT_OTA_PASS    "wledota"
-#define DEFAULT_MDNS_NAME   "x"
+#define DEFAULT_AP_SSID     "AvaSparkRGB"
+#define DEFAULT_AP_PASS     "avasparkrgb"
+#define DEFAULT_OTA_PASS    "avasparkrgb"
+#define DEFAULT_MDNS_NAME   "avasparkrgb"
 
 //increase if you need more
 #ifndef WLED_MAX_USERMODS
@@ -152,6 +152,7 @@
 #define USERMOD_ID_INTERNAL_TEMPERATURE  42     //Usermod "usermod_internal_temperature.h"
 #define USERMOD_ID_LDR_DUSK_DAWN         43     //Usermod "usermod_LDR_Dusk_Dawn_v2.h"
 #define USERMOD_ID_STAIRWAY_WIPE         44     //Usermod "stairway-wipe-usermod-v2.h"
+#define USERMOD_ID_VESC                  45     //Usermod "usermod_VESC.h"
 
 //Access point behavior
 #define AP_BEHAVIOR_BOOT_NO_CONN          0     //Open AP when no connection after boot
@@ -480,7 +481,7 @@
   #define DEFAULT_LED_COUNT 30
 #endif
 
-#define INTERFACE_UPDATE_COOLDOWN 1000 // time in ms to wait between websockets, alexa, and MQTT updates
+#define INTERFACE_UPDATE_COOLDOWN 2000 // time in ms to wait between websockets, alexa, and MQTT updates
 
 #define PIN_RETRY_COOLDOWN   3000 // time in ms after an incorrect attempt PIN and OTA pass will be rejected even if correct
 #define PIN_TIMEOUT        900000 // time in ms after which the PIN will be required again, 15 minutes

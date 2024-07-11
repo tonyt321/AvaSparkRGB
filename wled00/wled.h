@@ -250,9 +250,6 @@ using PSRAMDynamicJsonDocument = BasicJsonDocument<PSRAM_Allocator>;
 #define STRINGIFY(X) #X
 #define TOSTRING(X) STRINGIFY(X)
 
-#ifndef WLED_VERSION
-  #define WLED_VERSION "dev"
-#endif
 
 // Global Variable definitions
 WLED_GLOBAL char versionString[] _INIT(TOSTRING(WLED_VERSION));
@@ -300,6 +297,7 @@ WLED_GLOBAL int8_t irPin _INIT(IRPIN);
 WLED_GLOBAL char ntpServerName[33] _INIT("0.wled.pool.ntp.org");   // NTP server to use
 
 // WiFi CONFIG (all these can be changed via web UI, no need to set them here)
+WLED_GLOBAL byte person_on_ui    _INIT(0);
 WLED_GLOBAL char clientSSID[33] _INIT(CLIENT_SSID);
 WLED_GLOBAL char clientPass[65] _INIT(CLIENT_PASS);
 WLED_GLOBAL char cmDNS[33] _INIT(MDNS_NAME);                       // mDNS address (*.local, replaced by wledXXXXXX if default is used)
@@ -344,9 +342,9 @@ WLED_GLOBAL bool gammaCorrectCol    _INIT(true);  // use gamma correction on col
 WLED_GLOBAL bool gammaCorrectBri    _INIT(false); // use gamma correction on brightness
 WLED_GLOBAL float gammaCorrectVal   _INIT(2.8f);  // gamma correction value
 
-WLED_GLOBAL byte col[]    _INIT_N(({ 255, 160, 0, 0 }));  // current RGB(W) primary color. col[] should be updated if you want to change the color.
+WLED_GLOBAL byte col[]    _INIT_N(({ 0, 10, 0, 0 }));  // current RGB(W) primary color. col[] should be updated if you want to change the color.
 WLED_GLOBAL byte colSec[] _INIT_N(({ 0, 0, 0, 0 }));      // current RGB(W) secondary color
-WLED_GLOBAL byte briS     _INIT(128);                     // default brightness
+WLED_GLOBAL byte briS     _INIT(255);                     // default brightness
 
 WLED_GLOBAL byte nightlightTargetBri _INIT(0);      // brightness after nightlight is over
 WLED_GLOBAL byte nightlightDelayMins _INIT(60);
@@ -356,7 +354,7 @@ WLED_GLOBAL byte briMultiplier _INIT(100);          // % of brightness to set (t
 
 // User Interface CONFIG
 #ifndef SERVERNAME
-WLED_GLOBAL char serverDescription[33] _INIT("WLED");  // Name of module - use default
+WLED_GLOBAL char serverDescription[33] _INIT("AvaSpark RGB");  // Name of module - use default
 #else
 WLED_GLOBAL char serverDescription[33] _INIT(SERVERNAME);  // use predefined name
 #endif

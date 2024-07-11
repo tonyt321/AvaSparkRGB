@@ -11,6 +11,12 @@
  */
 //#include "../usermods/EXAMPLE_v2/usermod_v2_example.h"
 
+
+#ifdef USERMOD_VESC
+#include "../usermods/vesc/vesc.h"
+#warning **** usermods/vesc/vesc.h: Settings from this file are honored lllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll****
+#endif
+
 #ifdef USERMOD_BATTERY
   #include "../usermods/Battery/usermod_v2_Battery.h"
 #endif
@@ -211,7 +217,11 @@ void registerUsermods()
    * || || ||
    * \/ \/ \/
    */
-  //usermods.add(new MyExampleUsermod());
+
+  #ifdef USERMOD_VESC
+  usermods.add(new Usermodvesc());
+  #endif
+
   #ifdef USERMOD_BATTERY
   usermods.add(new UsermodBattery());
   #endif

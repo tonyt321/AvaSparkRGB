@@ -444,7 +444,7 @@ pinManager.allocateMultiplePins(pins, sizeof(pins)/sizeof(managed_pin_type), Pin
   DEBUG_PRINT(F("heap ")); DEBUG_PRINTLN(ESP.getFreeHeap());
 
   if (strcmp(clientSSID, DEFAULT_CLIENT_SSID) == 0)
-    showWelcomePage = true;
+    showWelcomePage = false;
   WiFi.persistent(false);
   #ifdef WLED_USE_ETHERNET
   WiFi.onEvent(WiFiEvent);

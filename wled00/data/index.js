@@ -26,8 +26,8 @@ var ws, cpick, ranges, wsRpt=0;
 var cfg = {
 	theme:{base:"dark", bg:{url:""}, alpha:{bg:0.6,tab:0.8}, color:{bg:""}},
 	comp :{colors:{picker: true, rgb: false, quick: true, hex: false},
-          labels:true, pcmbot:false, pid:true, seglen:false, segpwr:false, segexp:false,
-		  css:true, hdays:false, fxdef:true, idsort: false}
+          labels:true, pcmbot:false, pid:true, seglen:true, segpwr:true, segexp:false,
+		  css:true, hdays:false, fxdef:true, idsort: true}
 };
 var hol = [
 	[0,11,24,4,"https://aircoookie.github.io/xmas.png"], // christmas
@@ -670,7 +670,7 @@ function populateInfo(i)
 				urows += inforow(k,val);
 		}
 	}
-	var vcn = "Kuuhaku";
+	var vcn = "";
 	if (i.ver.startsWith("0.14.")) vcn = "Hoshi";
 //	if (i.ver.includes("-bl")) vcn = "Supāku";
 	if (i.cn) vcn = i.cn;

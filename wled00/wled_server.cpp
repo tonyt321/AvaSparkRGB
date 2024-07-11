@@ -345,12 +345,9 @@ void initServer()
   #endif
 
   server.on("/", HTTP_GET, [](AsyncWebServerRequest *request){
+        person_on_ui = true;
     if (captivePortal(request)) return;
-    if (!showWelcomePage || request->hasArg(F("sliders"))){
       serveIndex(request);
-    } else {
-      serveSettings(request);
-    }
   });
 
   #ifdef WLED_ENABLE_PIXART

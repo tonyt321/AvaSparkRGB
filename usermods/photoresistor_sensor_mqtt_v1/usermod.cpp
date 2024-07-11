@@ -23,7 +23,7 @@ int lightValue = 0;
 float lightPercentage = 0;
 float lastPercentage = 0;
 
-//gets called once at boot. Do all initialization that doesn't depend on network here
+//gets called once at boot. D o all initialization that doesn't depend on network here
 void userSetup()
 {
   pinMode(LIGHT_PIN, INPUT);
