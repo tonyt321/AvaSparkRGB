@@ -686,7 +686,7 @@ float fpkg_pitch = -1;
 float fpkg_motorCurrent = -1;
 
   #ifndef SIMPLE_CONFIG
-  int choosen_fast_preset = 2500;
+  int uart_data_get_throttle = 2500;
 
   int8_t off_preset = 0;
   int8_t motor_duty_fast = 70;
@@ -782,7 +782,7 @@ unsigned long vesc_get_milisec = 0;  // analog read limit
   static const char _alt_backwards_preset[];
   static const char _alt_forwards_preset[];
   //static const char _trail_ruffness_max[];
-  static const char _choosen_fast_preset[];
+  static const char _uart_data_get_throttle[];
   static const char _off_preset[];
   static const char _motor_duty_fast[];
   #endif
@@ -1042,7 +1042,7 @@ void get_data() {
 
       if (is_vesc_main) {
 
-        if ((vesc_get_milisec + choosen_fast_preset) < millis()){    // limit loop to 5 times a sec
+        if ((vesc_get_milisec + uart_data_get_throttle) < millis()){    // limit loop to 5 times a sec
       vesc_get_milisec = millis();
       get_vesc_data();
 
@@ -1599,7 +1599,7 @@ if ((!person_on_ui || (free_fall_preset == 250)) || (!person_on_ui && (free_fall
     top[FPSTR(_alt_toggle)] = alt_toggle;
     #ifndef SIMPLE_CONFIG
     top[FPSTR(_alt_mode_user)] = alt_mode_user;
-    top[FPSTR(_choosen_fast_preset)] = choosen_fast_preset;  //int input
+    top[FPSTR(_uart_data_get_throttle)] = uart_data_get_throttle;  //int input
     top[FPSTR(_off_preset)] = off_preset;  //int input
     top[FPSTR(_motor_duty_fast)] = motor_duty_fast;  //int input
     top[FPSTR(_alt_forwards_preset)] = alt_forwards_preset;  //int input
@@ -1640,7 +1640,7 @@ if ((!person_on_ui || (free_fall_preset == 250)) || (!person_on_ui && (free_fall
     #ifndef SIMPLE_CONFIG
     is_vesc_main            = (top[FPSTR(_is_vesc_main)] | is_vesc_main);       //bool
     accel_input             = (top[FPSTR(_accel_input )] | accel_input );       //bool
-    choosen_fast_preset   = top[FPSTR(_choosen_fast_preset)] | choosen_fast_preset;    //int input
+    uart_data_get_throttle   = top[FPSTR(_uart_data_get_throttle)] | uart_data_get_throttle;    //int input
     motor_duty_fast   = top[FPSTR(_motor_duty_fast)] | motor_duty_fast;     //int input
     off_preset   = top[FPSTR(_off_preset)] | off_preset;          //int input
     #endif
@@ -1678,7 +1678,7 @@ const char Usermodvesc::_accel_input [] PROGMEM = "Aceleromter only input";
 const char Usermodvesc::_dim_standing_up_preset[] PROGMEM = "Inactive standing up lighting preset";
 const char Usermodvesc::_free_fall_preset[] PROGMEM = "Freefall lighting preset";
 #ifndef SIMPLE_CONFIG
-const char Usermodvesc::_choosen_fast_preset[] PROGMEM = "get vesc data every mili sec";
+const char Usermodvesc::_uart_data_get_throttle[] PROGMEM = "get vesc data every mili sec";
 const char Usermodvesc::_off_preset[] PROGMEM = "off preset";
 const char Usermodvesc::_motor_duty_fast[] PROGMEM = "High duty motor duty %";
 const char Usermodvesc::_alt_mode_user[] PROGMEM = "Toggle alt presets by laying on other side";
