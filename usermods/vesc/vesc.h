@@ -708,7 +708,7 @@ float fpkg_motorCurrent = -1;
   bool alt_mode = true;
   int8_t alt_backwards_preset = 1;  //preset played as a boot animation
   int8_t alt_forwards_preset = 1;  //preset played as a boot animation
-
+  int8_t breaking_preset = 1;
 
 
   bool FRONT_LIGHT_R = false;
@@ -781,6 +781,7 @@ unsigned long vesc_get_milisec = 0;  // analog read limit
   static const char _float_pkg[];
   static const char _alt_backwards_preset[];
   static const char _alt_forwards_preset[];
+  static const char _breaking_preset[];
   //static const char _trail_ruffness_max[];
   static const char _uart_data_get_throttle[];
   static const char _off_preset[];
@@ -1253,6 +1254,10 @@ void set_preset() {
         }
         }
         }
+
+        if (breaking_preset != 0 && current < -4){
+          applyPreset(breaking_preset);
+        }
 }
 
 
@@ -1608,6 +1613,7 @@ if ((!person_on_ui || (free_fall_preset == 250)) || (!person_on_ui && (free_fall
     top[FPSTR(_forwards_preset)] = forwards_preset;  //int input
     top[FPSTR(_backwards_preset)] = backwards_preset;  //int input
     top[FPSTR(_dim_preset)] = dim_preset;  //int input
+    top[FPSTR(_breaking_preset)] = breaking_preset;  //int input
 
     top[FPSTR(_dim_standing_up_preset)] = dim_standing_up_preset;  //int input
 
@@ -1652,6 +1658,7 @@ if ((!person_on_ui || (free_fall_preset == 250)) || (!person_on_ui && (free_fall
     float_pkg            = (top[FPSTR(_float_pkg)] | float_pkg);       //bool
     alt_backwards_preset   = top[FPSTR(_alt_backwards_preset)] | alt_backwards_preset;     //int input
     alt_forwards_preset   = top[FPSTR(_alt_forwards_preset)] | alt_forwards_preset;     //int input
+    breaking_preset   = top[FPSTR(_breaking_preset)] | breaking_preset;     //int input
     #endif
     dim_standing_up_preset   = top[FPSTR(_dim_standing_up_preset)] | dim_standing_up_preset;     //int input
     vesc_light_on            = (top[FPSTR(_vesc_light_on)] | vesc_light_on);       //bool
@@ -1686,6 +1693,7 @@ const char Usermodvesc::_float_pkg[] PROGMEM = "use float package info";
 const char Usermodvesc::_direction_threshold[] PROGMEM = "Experimental Direction threshold for Accel only 0 to disable";
 const char Usermodvesc::_alt_forwards_preset[] PROGMEM = "Alt forward travel lighting preset";
 const char Usermodvesc::_alt_backwards_preset[] PROGMEM = "Alt reverse travel lighting preset";
+const char Usermodvesc::_breaking_preset[] PROGMEM = "Slowing down Preset (-current based)";
 #endif
 const char Usermodvesc::_alt_toggle[] PROGMEM = "Toggle on off by laying on side";
 const char Usermodvesc::_forwards_preset[] PROGMEM = "Forward travel lighting preset";
